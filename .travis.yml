@@ -1,10 +1,14 @@
 language: crystal
 services:
   - postgresql
-script:
-  - env CRYSTAL_ENV=test crystal spec
+before_install:
+  - nvm install 9
+  - npm install js-yaml shelljs
+  - node .travis/inject-dependencies.js
 before_script:
   - curl https://raw.githubusercontent.com/axvm/cake/master/install.sh | bash && source /home/travis/.bashrc
   - psql -c 'create database test;' -U postgres
   - echo DATABASE_URL=postgres://postgres@localhost:5432/test > .env.test.local
   - env CRYSTAL_ENV=test cake db:migrate
+script:
+  - env CRYSTAL_ENV=test crystal spec
