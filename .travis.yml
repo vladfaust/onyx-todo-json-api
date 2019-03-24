@@ -1,1 +1,5 @@
 language: crystal
+before_install:
+  - nvm install 9
+  - npm install js-yaml shelljs
+  - node .travis/inject-dependencies.js
