@@ -3,5 +3,5 @@ require "onyx/http"
 require "./views/**"
 require "./endpoints/**"
 
-Onyx.get "/", Endpoints::Hello
-Onyx.listen
+Onyx::HTTP.get "/", Endpoints::Hello
+Onyx::HTTP.listen

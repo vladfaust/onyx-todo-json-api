@@ -21,12 +21,12 @@ shards:
     version: 0.4.0
 
   onyx:
-    path: ../../onyx
-    version: 0.3.0
+    github: onyxframework/onyx
+    version: 0.4.0
 
   onyx-http:
-    path: ../../http
-    version: 0.7.0
+    github: onyxframework/http
+    version: 0.8.0
 
   radix:
     github: luislavena/radix

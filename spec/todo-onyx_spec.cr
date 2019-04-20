@@ -1,23 +1,15 @@
-require "./spec_helper"
-require "http/client"
-
-spawn do
-  sleep(1)
-  client = HTTP::Client.new(URI.parse("http://localhost:5000"))
-
-  it do
-    response = client.get("/")
-    response.status_code.should eq 200
-    response.body.should eq %Q[{"message":"Hello, Onyx!"}]
-  end
-
-  it do
-    response = client.get("/?who=Crystal")
-    response.status_code.should eq 200
-    response.body.should eq %Q[{"message":"Hello, Crystal!"}]
-  end
-
-  exit
-end
-
+require "spec"
+require "onyx/http/spec"
 require "../src/server"
+
+describe "app" do
+  it "responds to /" do
+    response = Onyx::HTTP::Spec.get("/")
+    response.assert(200, %Q[{"message":"Hello, Onyx!"}])
+  end
+
+  it "responds to /?who" do
+    response = Onyx::HTTP::Spec.get("/?who=Crystal")
+    response.assert(200, %Q[{"message":"Hello, Crystal!"}])
+  end
+end
