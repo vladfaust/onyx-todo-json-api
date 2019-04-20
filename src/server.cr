@@ -4,11 +4,14 @@ require "./models"
 require "./views/**"
 require "./endpoints/**"
 
-Onyx.get "/", Endpoints::Hello
-Onyx.post "/items", Endpoints::Items::Create
-Onyx.get "/items", Endpoints::Items::Index
-Onyx.get "/items/:id", Endpoints::Items::Get
-Onyx.patch "/items/:id", Endpoints::Items::Update
-Onyx.delete "/items/:id", Endpoints::Items::Delete
+Onyx::HTTP.get "/", Endpoints::Hello
 
-Onyx.listen
+Onyx::HTTP.on "/items" do |r|
+  r.post "/", Endpoints::Items::Create
+  r.get "/", Endpoints::Items::Index
+  r.get "/:id", Endpoints::Items::Get
+  r.patch "/:id", Endpoints::Items::Update
+  r.delete "/:id", Endpoints::Items::Delete
+end
+
+Onyx::HTTP.listen

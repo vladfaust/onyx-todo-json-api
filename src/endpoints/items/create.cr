@@ -14,7 +14,7 @@ struct Endpoints::Items::Create
     #
 
     item = Models::Item.new(content: params.json.content)
-    item = Onyx.query(item.insert.returning(Models::Item)).first
+    item = Onyx::SQL.query(item.insert.returning(Models::Item)).first
 
     # Return the success status
     #

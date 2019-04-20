@@ -13,10 +13,10 @@ struct Endpoints::Items::Delete
   end
 
   def call
-    item = Onyx.query(Models::Item.where(id: params.path.id)).first?
+    item = Onyx::SQL.query(Models::Item.where(id: params.path.id)).first?
     raise ItemNotFound.new unless item
 
-    Onyx.exec(item.delete)
+    Onyx::SQL.exec(item.delete)
     status(202)
   end
 end

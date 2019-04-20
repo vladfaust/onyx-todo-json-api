@@ -13,7 +13,7 @@ struct Endpoints::Items::Get
   end
 
   def call
-    item = Onyx.query(Models::Item.where(id: params.path.id)).first?
+    item = Onyx::SQL.query(Models::Item.where(id: params.path.id)).first?
     raise ItemNotFound.new unless item
 
     return Views::Item.new(item)

@@ -32,7 +32,7 @@ struct Endpoints::Items::Update
     # Fetch the item from DB
     #
 
-    item = Onyx.query(Models::Item.where(id: params.path.id)).first?
+    item = Onyx::SQL.query(Models::Item.where(id: params.path.id)).first?
     raise ItemNotFound.new unless item
 
     # Create a new changeset with a snapshot of actual item's values
@@ -57,7 +57,7 @@ struct Endpoints::Items::Update
     # Update the item with modified changeset returning itself
     #
 
-    item = Onyx.query(item.update(changeset).returning(Models::Item)).first
+    item = Onyx::SQL.query(item.update(changeset).returning(Models::Item)).first
     return Views::Item.new(item)
   end
 end
