@@ -14,7 +14,7 @@ shards:
 
   http-params-serializable:
     github: vladfaust/http-params-serializable
-    version: 0.3.0
+    version: 0.4.0
 
   kilt:
     github: jeromegn/kilt
@@ -22,11 +22,11 @@ shards:
 
   onyx:
     github: onyxframework/onyx
-    version: 0.4.0
+    version: 0.6.1
 
   onyx-http:
     github: onyxframework/http
-    version: 0.8.0
+    version: 0.9.0
 
   radix:
     github: luislavena/radix
